@@ -19,8 +19,12 @@ const App = () => {
   const [selected, setSelected] = useState(0);
   const [votes, setVote] = useState(Array(anecdotes.length).fill(0));
 
+  const maxVotes = Math.max(...votes);
+  const mostVotedAnecdote = anecdotes[votes.indexOf(maxVotes)];
+
   return (
     <>
+      <h1>Anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
       <div>has {votes[selected]} votes</div>
       <Button
@@ -38,6 +42,9 @@ const App = () => {
         }}
         text={"next anecdote"}
       ></Button>
+      <h1>Anecdote with most votes</h1>
+      <div>{mostVotedAnecdote}</div>
+      <div>has {maxVotes} votes</div>
     </>
   );
 };
